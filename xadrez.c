@@ -1,5 +1,23 @@
 #include <stdio.h>
 
+// Função recursiva para mover a torre ( recursividade antes do printf para a conta começar ao contrário)
+void moverTorre(int n) {
+    if (n > 0) {
+    // Contar de trás pra frente
+    moverTorre(n - 1); // Chamada recursiva em cima, para o valor 
+    printf("Torre se moveu para a direita!\n");
+    }
+    // "n" será alimentado com 5
+}
+// Função recursiva para mover a rainha ( recursividade antes do printf para a conta começar ao contrário)
+void moverRainha(int n) {
+    if (n > 0) {
+        moverRainha(n - 1);
+        printf("Rainha se moveu para a esquerda!\n");
+    }
+    //"n" será alimentado com 8
+}
+
 int main()
 {
     int escolhaPeca;
@@ -19,43 +37,36 @@ int main()
     switch (escolhaPeca)
     {
     case 1:
+    //Função recursiva previamente definida
         printf("Você escolheu Torre!\n");
-        while (torre <= 5)
-        {
-            printf("Movendo a torre %d casa(s) para a direta!\n", torre);
-            torre++;
-        }
+        moverTorre(5); // Chamada da função recursiva
         break;
-
     case 2:
+    // loop aninhado para mover o bispo
         printf("Você escolheu Bispo!\n");
-        do
-        {
-            printf("Movendo o bispo %d casa(s) para cima e à direita!\n", bispo);
-            bispo++;
-        } while (bispo <= 5);
-        break;
-
+       for (int i = 1; i <= 5; i++){
+        printf("Bispo se moveu para cima e ");
+             for(int j = 1; j <= 2; j++) {
+            printf("para a direita!\n");
+            break;
+     } 
+    }
+    break;
     case 3:
-        for (int rainha = 1; rainha <= 8; rainha++)
-        {
-            printf("Movendo a rainha %d casa(s) para a esquerda!\n", rainha);
-        }
+    //Função recursiva previamente definida
+         printf("Você escolheu Rainha!\n");
+        moverRainha(8);
         break;
 
     case 4: 
-            for (int i = 1; i <= 2; ++i) {
-        printf("Cavalo se moveu %d casa(s) para baixo\n", i);
-        printf("\n");
-
-        while (i == 2 ) {
-            printf("Cavalo se moveu 1 casa(s) para a esquerda\n");
-            i = 3;
-    /*       poderia usar break aqui, mas na segunda volta do loop,
-          qnd break == 2, i nunca seria 3 geraria loop infinito. o break serviria para parar  
-          porém eu atualizei o valor de i dentro do while, pq o for automaticamente para qnd i for 3.
-          */
-        }
+    //loop complexo ( 2 variáveis controladoras) e aninhado com while
+        printf("Você escolheu Cavalo!\n");
+           for(int i = 1, j = 2; i <= j; i++) {
+        printf("Cavalo se moveu para cima!\n");
+          while(i == 2) {
+            printf("Cavalo se moveu para a direita!\n");
+            i++;
+          }
     }
     break;
     case 5:
